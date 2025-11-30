@@ -1,0 +1,29 @@
+INSTRUCCIONES PARA IMPORTAR LA BASE DE DATOS
+
+Requisitos previos:
+- Tener instalado XAMPP.
+- Encender los servicios Apache y MySQL con el botón “Start”.
+
+Acceder a phpMyAdmin:
+- En XAMPP, en la fila de MySQL, hacer clic en el botón “Admin”.
+- Se abrirá phpMyAdmin en el navegador.
+
+Importar la base de datos:
+
+- En phpMyAdmin, crear una base de datos llamada: pinateria_db
+- Seleccionar la base de datos recién creada.
+- Ir a la pestaña “Importar” ubicada en el menú superior.
+- Presionar el botón “Seleccionar archivo” y cargar el archivo pinateria_db.sql
+- Hacer clic en “Continuar” para ejecutar la importación.
+
+Configuración adicional (solo si hay error de conexión):
+
+Si llega a haber un problema al conectar la base de datos, revise y modifique el archivo config.php en la raíz del proyecto. Ejemplo de configuración estándar:
+
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "pinateria_db";
+
+
+Con esto la base de datos estará lista para ser usada por la aplicación.

@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+html, body { height: 100%; }
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+header .logo img { height: 50px; }
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+header nav ul li a:hover { color: #222; }
+
+main {
+    flex: 1;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+}
+h1 {
+    margin-bottom: 1.5rem;
+    color: #ff8c00;
+}
+
+.form-producto {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: left;
+}
+.form-producto label {
+    font-weight: bold;
+    margin-top: 1rem;
+    display: block;
+}
+.form-producto input,
+.form-producto textarea,
+.form-producto select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.form-producto input:focus,
+.form-producto textarea:focus,
+.form-producto select:focus {
+    outline: none;
+    border-color: #ff8c00;
+}
+
+.acciones {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.btn-guardar {
+    background: #2ecc71;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-guardar:hover { background: #27ae60; }
+
+.btn-cancelar {
+    text-decoration: none;
+    background: #e74c3c;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+.btn-cancelar:hover { background: #c0392b; }
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
