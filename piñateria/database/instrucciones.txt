@@ -25,5 +25,16 @@ $user = "root";
 $pass = "";
 $db   = "pinateria_db";
 
-
 Con esto la base de datos estará lista para ser usada por la aplicación.
+
+------------------------------------------
+USUARIO NECESARIO PARA PODER ACCEDER A LAS
+VISTAS TIPOS DE PRODUCTOS, PRODUCTOS (ADMIN)
+------------------------------------------
+Usuario: Admin1
+Correo: adminsin@pinateria.com <-insertar en login
+Contraseña: 123456 <- Insertar en login
+Rol: admin
+
+Aun no se ha implementado la funcion para registrarse correctamente, asi
+que para acceder se requiere de usar el usuario ya creado.
