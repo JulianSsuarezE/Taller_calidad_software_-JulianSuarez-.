@@ -1,4 +1,4 @@
-// Función para manejar errores de fetch
+
 function fetchJson(url) {
     return fetch(url)
         .then(res => {
@@ -90,3 +90,4 @@ fetchJson('../../backend/dashboard/top_productos.php')
 
       document.querySelector('.cards').appendChild(container);
   });
+
