@@ -2,20 +2,13 @@
 require_once '../../config/conexion.php';
 
 try {
-    $sql = "
-        SELECT p.nombre, SUM(dv.cantidad) AS total_vendidos
-        FROM detalle_venta dv
-        JOIN productos p ON dv.producto_id = p.id
-        GROUP BY p.nombre
-        ORDER BY total_vendidos DESC
-        LIMIT 5
-    ";
+    $sql = "SELECT COUNT(*) AS total FROM productos";
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     echo json_encode($data);
 } catch (Exception $e) {
-    echo json_encode([]);
+    echo json_encode(['total' => 0, 'error' => $e->getMessage()]);
 }
 ?>
