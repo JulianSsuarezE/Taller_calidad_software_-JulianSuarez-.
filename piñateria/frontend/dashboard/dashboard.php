@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Solo admin puede ver el dashboard del local
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'admin') {
     header("Location: ../usuarios/dashboard.php");
     exit();
@@ -14,6 +13,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'admin') {
     <meta charset="UTF-8">
     <title>Dashboard del Local</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../assets/js/main.js"></script>
     <link rel="stylesheet" href="../../assets/css/dashboard/dashboard.css">
 </head>
 <body>
@@ -48,65 +48,71 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'admin') {
     </main>
 
     <script>
-        // Total productos
-        fetch('../../backend/dashboard/total_productos.php')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('totalProductos').textContent = 
-                `🧾 Total Productos: ${data.total}`;
-        });
+    // Total productos
+    fetch('../../backend/dashboard/total_productos.php')
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('totalProductos').textContent = 
+            `🧾 Total Productos: ${data.total}`;
+    });
 
-        // Total tipos
-        fetch('../../backend/dashboard/total_tipos.php')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('totalTipos').textContent = 
-                `Tipos de Productos: ${data.total}`;
-        });
+    // Total tipos
+    fetch('../../backend/dashboard/total_tipos.php')
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('totalTipos').textContent = 
+            `Tipos de Productos: ${data.total}`;
+    });
 
-        // Total ventas
-        fetch('../../backend/dashboard/total_ventas.php')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('totalVentas').textContent = 
-                `Ventas Realizadas: ${data.total}`;
-        });
+    // Total ventas
+    fetch('../../backend/dashboard/total_ventas.php')
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('totalVentas').textContent = 
+            `Ventas Realizadas: ${data.total}`;
+    });
 
-        // Ganancias
-        fetch('../../backend/dashboard/ganancias_totales.php')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('gananciasTotales').textContent = 
-                `Ganancias Totales: $${data.total}`;
-        });
+    // Ganancias
+    fetch('../../backend/dashboard/ganancias_totales.php')
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('gananciasTotales').textContent = 
+            `Ganancias Totales: $${data.ganancias ?? 0}`;
+    });
 
-        // Ventas por tipo
-        fetch('../../backend/dashboard/ventas_por_tipo.php')
-        .then(res => res.json())
-        .then(data => {
-            const ctx = document.getElementById('ventasPorTipo');
+    // Ventas por tipo
+    fetch('../../backend/dashboard/ventas_por_tipo.php')
+    .then(res => res.json())
+    .then(data => {
 
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: data.tipos,      // Nombres
-                    datasets: [{
-                        label: 'Ventas por Tipo',
-                        data: data.ventas,
-                        backgroundColor: 'rgba(255,140,0,0.7)',
-                        borderColor: 'rgba(255,140,0,1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
+        // Construir arrays
+        const tipos = data.map(item => item.tipo);
+        const ventas = data.map(item => item.total_ventas);
+
+        const ctx = document.getElementById('ventasPorTipo');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: tipos,
+                datasets: [{
+                    label: 'Ventas por Tipo',
+                    data: ventas,
+                    backgroundColor: 'rgba(255,140,0,0.7)',
+                    borderColor: 'rgba(255,140,0,1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
+
     <footer>
         <p>&copy; <?= date('Y') ?> Piñatería. Todos los derechos reservados.</p>
     </footer>
