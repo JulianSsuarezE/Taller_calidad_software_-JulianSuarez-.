@@ -13,9 +13,10 @@ body {
     min-height: 100vh;
 }
 
+/* Header corregido: mayor contraste */
 header {
-    background-color: #ff8c00;
-    color: #fff;
+    background-color: #ff8c00; /* naranja */
+    color: #000; /* cambio de blanco a negro para mejor contraste */
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
@@ -34,7 +35,7 @@ header nav ul {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #000; /* enlaces también en negro para contraste */
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
