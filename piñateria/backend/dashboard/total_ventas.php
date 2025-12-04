@@ -1,10 +1,14 @@
 <?php
 require_once '../../config/conexion.php';
 
-$sql = "SELECT COUNT(*) AS total FROM ventas";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$data = $stmt->fetch(PDO::FETCH_ASSOC);
+try {
+    $sql = "SELECT COUNT(*) AS total FROM ventas";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo json_encode($data);
+    echo json_encode($data);
+} catch (Exception $e) {
+    echo json_encode(['total' => 0, 'error' => $e->getMessage()]);
+}
 ?>
